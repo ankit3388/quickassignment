@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { BiChevronDown } from "react-icons/bi";
-import { LuSettings2 } from "react-icons/lu";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './displayDropdown.css';
+import { LuSettings2 } from "react-icons/lu";
+import { BiChevronDown } from "react-icons/bi";
 
 function DisplayDropdown({ grouping, setGrouping, ordering, setOrdering }) {
 

@@ -1,10 +1,10 @@
 import './header.css';
 import DisplayDropdown from '../Dropdowns/DisplayDropdown';
-function Header({ grouping, setGrouping, ordering, setOrdering  }) {
+function Header({ grouping, setGrouping, }) {
 
     return (
         <header>
-            <DisplayDropdown grouping={grouping} setGrouping={setGrouping} ordering={ordering} setOrdering={setOrdering} />
+            <DisplayDropdown grouping={grouping} setGrouping={setGrouping}  />
         </header>
     );
 }
