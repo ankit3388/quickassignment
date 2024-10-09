@@ -3,49 +3,51 @@ import Header from './components/Header';
 import Grid from './components/Grid';
 import { GET_TICKETS_URL } from './constants';
 import { loadGrid, mapUsersByUserId } from './utils';
-import { Ticket, User } from './interfaces';
 import Loader from './components/Loader';
-import './App.css'
+import './App.css';
 
 function App() {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [userData, setUserData] = useState<Record<string, User>>({});
-  const [gridData, setGridData] = useState<Record<string, Ticket[]>>({});
-  const [grouping, setGrouping] = useState<string>("status");
-  const [ordering, setOrdering] = useState<string>("priority");
+  const [tickets, setTickets] = useState([]);
+  const [userData, setUserData] = useState({});
+  const [gridData, setGridData] = useState({});
+  const [grouping, setGrouping] = useState("status");
+  const [ordering, setOrdering] = useState("priority");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadSettings();
-    fetch(GET_TICKETS_URL).then(resp => resp.json()).then(res => {
-      const { tickets, users } = res;
-      setTickets(tickets);
-      setUserData(mapUsersByUserId(users));
-    }).catch(err => { });
-  }, [])
+    fetch(GET_TICKETS_URL)
+      .then(resp => resp.json())
+      .then(res => {
+        const { tickets, users } = res;
+        setTickets(tickets);
+        setUserData(mapUsersByUserId(users));
+      })
+      .catch(err => { /* Handle error */ });
+  }, []);
 
   useEffect(() => {
-    if (!tickets.length)
-      return;
+    if (!tickets.length) return;
     setGridData(loadGrid(tickets, grouping, ordering));
     setLoading(false);
-  }, [grouping, ordering, tickets])
+  }, [grouping, ordering, tickets]);
 
-  const onSetGrouping = useCallback((value: string) => {
+  const onSetGrouping = useCallback((value) => {
     setLoading(true);
     setGrouping(value);
     saveSettings({ grouping: value });
   }, []);
 
-  const onSetOrdering = useCallback((value: string) => {
+  const onSetOrdering = useCallback((value) => {
     setLoading(true);
     setOrdering(value);
     saveSettings({ ordering: value });
   }, []);
 
-  const saveSettings = useCallback((data: Record<string, string>) => {
-    for (let key in data)
+  const saveSettings = useCallback((data) => {
+    for (let key in data) {
       localStorage.setItem(key, data[key]);
+    }
   }, []);
 
   const loadSettings = useCallback(() => {
@@ -56,9 +58,7 @@ function App() {
   return (
     <div className="App">
       <Header grouping={grouping} setGrouping={onSetGrouping} ordering={ordering} setOrdering={onSetOrdering} />
-      {loading ? <Loader /> :
-        <Grid gridData={gridData} grouping={grouping} userIdToData={userData} />
-      }
+      {loading ? <Loader /> : <Grid gridData={gridData} grouping={grouping} userIdToData={userData} />}
     </div>
   );
 }

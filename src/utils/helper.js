@@ -6,7 +6,7 @@ import { AiFillCloseCircle, AiFillWarning } from 'react-icons/ai';
 import { BiSignal2, BiSignal3, BiSignal4 } from 'react-icons/bi';
 
 
-export const getPriorityIcon = (priority: string) => {
+export const getPriorityIcon = (priority) => {
     switch (priority) {
         case "No priority": return <LuMoreHorizontal color="#797d84" size={14} />
         case "Low": return <BiSignal2 color='#6b6f76' size={14} />
@@ -17,7 +17,7 @@ export const getPriorityIcon = (priority: string) => {
     }
 }
 
-export const getStatusIcon = (priority: string) => {
+export const getStatusIcon = (priority) => {
     switch (priority) {
         case "Backlog": return <BiRadioCircle color='#e2e2e2' size={24} />
         case "Todo": return <BiRadioCircle color='#e2e2e2' size={24} />
