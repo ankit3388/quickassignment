@@ -3,8 +3,8 @@ import Card from '../Card';
 import './column.css';
 import { GrAdd } from 'react-icons/gr';
 import { LuMoreHorizontal } from 'react-icons/lu';
-// import { getPriorityIcon, getStatusIcon } from '../../utils/helper';
-// import UserIcon from '../UserIcon';
+import { getPriorityIcon, getStatusIcon } from '../../utils/helper';
+import UserIcon from '../UserIcon';
 function Column({ tickets, grouping, groupBy, userIdToData }) {
   
   // Memoize the title based on the grouping
@@ -18,22 +18,22 @@ function Column({ tickets, grouping, groupBy, userIdToData }) {
   }, [grouping, groupBy, userIdToData]);
 
   // Memoize the icon based on the grouping
-//   const icon = useMemo(() => {
-//     if (grouping === 'status') {
-//       return getStatusIcon(groupBy);
-//     }
-//     if (grouping === 'priority') {
-//       return getPriorityIcon(groupBy);
-//     }
-//     if (grouping === 'user' && userIdToData[groupBy]) {
-//       return (
-//         <UserIcon
-//           name={userIdToData[groupBy]?.name || 'Unknown'}
-//           available={userIdToData[groupBy]?.available}
-//         />
-//       );
-//     }
-//   }, [grouping, groupBy, userIdToData]);
+  const icon = useMemo(() => {
+    if (grouping === 'status') {
+      return getStatusIcon(groupBy);
+    }
+    if (grouping === 'priority') {
+      return getPriorityIcon(groupBy);
+    }
+    if (grouping === 'user' && userIdToData[groupBy]) {
+      return (
+        <UserIcon
+          name={userIdToData[groupBy]?.name || 'Unknown'}
+          available={userIdToData[groupBy]?.available}
+        />
+      );
+    }
+  }, [grouping, groupBy, userIdToData]);
 
   return (
     <div className="column">

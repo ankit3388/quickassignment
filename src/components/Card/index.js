@@ -12,7 +12,7 @@ function Card({ ticket, userData, hideStatusIcon, hideProfileIcon }) {
 
       <div className='top-container'>
         <div className='ticket-id'>{ticket.id}</div>
-        {/* {hideProfileIcon ? null : <UserIcon name={userData.name} available={userData.available} />} */}
+        {hideProfileIcon ? null : <UserIcon name={userData.name} available={userData.available} />}
         {/* console.log(userData); */}
       </div>
 

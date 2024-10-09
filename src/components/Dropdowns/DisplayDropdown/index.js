@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import './displayDropdown.css';
-// import { LuSettings2 } from "react-icons/lu";
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { BiChevronDown } from "react-icons/bi";
+import { LuSettings2 } from "react-icons/lu";
+import './displayDropdown.css';
 
 function DisplayDropdown({ grouping, setGrouping, ordering, setOrdering }) {
 
@@ -32,7 +32,7 @@ function DisplayDropdown({ grouping, setGrouping, ordering, setOrdering }) {
   return (
     <div className='display-dropdown' ref={componentRef}>
       <div className='dropdown-label-container' onClick={openDropdown}>
-        {/* <LuSettings2 color='#6b6f76' /> */}
+        <LuSettings2 color='#6b6f76' />
         <div className='dropdown-label'>Display</div>
         <BiChevronDown color='#6b6f76' />
       </div>
